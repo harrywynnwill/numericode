@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
+    "express": "^4.16.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0",
-    "express": "^4.16.2"
+    "react-scripts": "1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:server": "node server/start.js",
     "build": "react-scripts build",
+    "start:server": "npm run build && node ./start.js",
     "test": "react-scripts test --env=jsdom",
     "test:unit": "./node_modules/.bin/mocha --exit",
     "eject": "react-scripts eject"

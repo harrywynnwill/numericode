@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const app = express()
 
 module.exports = class Server {
@@ -8,14 +9,15 @@ module.exports = class Server {
         this.port = port
     }
 
-    static deserialize(codedMessage) {
+    static deserialise(codedMessage) {
         return codedMessage.split(" ");
     }
 
     start() {
+        app.use('/', express.static(path.join(__dirname,'.', 'build')));
         app.get('/decode/:numericode', (req, res) => {
             const codedMessage = req.params.numericode;
-            res.json({ decoded: this.numericode.decode(Server.deserialize(codedMessage)) })
+            res.json({ decoded: this.numericode.decode(Server.deserialise(codedMessage)) })
         })
         app.listen(this.port, () => console.log(`Starting the numericode server on port ${this.port}`));
         return app;
