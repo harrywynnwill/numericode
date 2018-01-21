@@ -4,6 +4,7 @@ const ZERO = 0;
 const ALPHABET = [...new Set(' abcdefghijklmnopqrstuvwxyz'.split(''))]; //TODO maybe make this a const //todo sets maintain order
 
 
+
 const decode = (numbers) => {
     return numbers.map(decipher).join('');
 }
