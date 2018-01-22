@@ -10,7 +10,16 @@ module.exports = class Server {
     }
 
     static deserialise(codedMessage) {
-        return codedMessage.split(" ");
+        if(Server.isCorrectInput(codedMessage)) {
+             return codedMessage.split(" ");
+        }
+        throw new Error('wrong format');
+    }
+
+    static isCorrectInput(codedMessage) {
+        const pattern = '[0-9 ]+';
+        return codedMessage.match(pattern) == codedMessage;
+        
     }
 
     start() {

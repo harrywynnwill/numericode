@@ -2,6 +2,8 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 const Server = require('../server.js');
 const should = chai.should();
+const expect = require('chai').expect;
+
 
 chai.use(chaiHttp);
 const numericode = { decode: () => "hello" };
@@ -23,5 +25,19 @@ describe('/GET deciphered message', () => {
                 done();
             });
     });
+
+    describe('deserialise', () => {
+        it('deserialises the response', () => {
+            expect(Server.deserialise("11 222 3 4 5 6 7"))
+                .to.deep.equal(['11', '222', '3', '4', '5', '6', '7']);
+            expect(() => Server.deserialise("11 222 3 4 5 6 7a")).to.throw(Error);
+        })
+        it('only handles integers and spaces', () => {
+            expect(Server.isCorrectInput("11 222 3 4 6 7  ")).to.be.true
+            expect(Server.isCorrectInput("11 222 3 4 6 7  a")).to.be.false
+
+        })
+
+    })
 
 });

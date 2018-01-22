@@ -14,19 +14,20 @@ class App extends Component {
     this.state = { value: '', decoded: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.url = 'http://localhost:3000/decode/'
   }
 
   componentWillMount() {
-    const cachedDecoded = localStorage.getItem('state');
-    if (cachedDecoded) {
-      this.setState({ decoded: cachedDecoded });
-      return;
+    const cachedDecodedState = localStorage.getItem('state');
+    if (cachedDecodedState) {
+      this.setState({ decoded: cachedDecodedState });
+        return;
     }
   }
 
   onResponse(response) {
     this.setState({ decoded: response.data.decoded })
-    localStorage.setItem('state', this.state.value)
+    localStorage.setItem('state', this.state.decoded )
   }
 
   handleChange(event) {
@@ -35,17 +36,22 @@ class App extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    await Axios.get(`http://localhost:3000/decode/${this.state.value}`)
+    await Axios.get(`${this.url}${this.state.value}`)
       .then(response => this.onResponse(response))
   };
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to Numericode</h1>
         </header>
-        <CodeInput handleSubmit={this.handleSubmit} handleChange={this.handleChange}
-          value={this.value}></CodeInput>
+        <form onSubmit={this.handleSubmit}>
+          <label>Please enter the code:
+           <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
         <MessageDisplay message={this.state.decoded}></MessageDisplay>
       </div>
     );
