@@ -1,8 +1,6 @@
-Numericode
+# Numericode
 
-#Installation
-
-Prerequistites
+## Installation
 
 Have Node installed, i'm running `v9.3.0`.
 
