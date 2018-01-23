@@ -12,7 +12,9 @@ Have Node installed, i'm running `v9.3.0`.
 
 `npm install`
 
-`npm run test:all`
+`npm run test:unit`  - run unit tests
+
+`npm run test:component` - run React component tests
 
 `npm run start:server`  - builds the react app and starts the server...
 
@@ -52,7 +54,7 @@ The Frontend is written in React which is a little heavy weight for the task. Ho
 
 The app has good unit test coverage, however it could do with some integration tests
 
-I TDDed the algo, the erver is unit tested and I used Enzyme to test the react components.
+I TDDed the algo, the server is unit tested and I used Enzyme to test the React components.
 
 # Roadmap
 
