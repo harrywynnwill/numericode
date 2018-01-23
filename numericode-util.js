@@ -19,11 +19,11 @@ const alphabetIndex = (number) => {
 }
 
 const numberDividedBy27UntilBelow27 = (number) => {
-    const TWENTY_SEVEN = 27;
-    if (number < TWENTY_SEVEN) {
+    const twentySeven = 27;
+    if (number < twentySeven) {
         return number;
     }
-    return numberDividedBy27UntilBelow27( number / TWENTY_SEVEN );
+    return numberDividedBy27UntilBelow27( number / twentySeven );
 }
 
 const isAnInteger = (number) => number % 1 === zero;

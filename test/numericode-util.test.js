@@ -11,7 +11,6 @@ describe('numericode substitution cypher', () => {
         [432, 21, 19, 5832, 5, 135, 14, 6561, 59049, 15, 486, 275562],
         [20, 486, 21, 513, 19, 324, 5, 21924, 540, 135, 3, 8],
         [8, 5, 324, 8748, 295245, 730, 23, 405, 13122, 12, 108]];
-;
 
     it('can decipher messages', () => {
         expect(numbericode.decode(testCaseOne)).to.equal('hello');
@@ -20,6 +19,7 @@ describe('numericode substitution cypher', () => {
         expect(numbericode.decode(testCaseFour)).to.equal('trussle tech');
         expect(numbericode.decode(testCaseFive)).to.equal('hello world');
     });
+
     it('can decipher a number to a letter', () => {
         expect(numbericode.decipher(0)).to.equal(' ');
         expect(numbericode.decipher(8)).to.equal('h');
@@ -33,7 +33,7 @@ describe('numericode substitution cypher', () => {
         expect(numbericode.indexToLetter(0)).to.equal(' ');
         expect(numbericode.indexToLetter(8)).to.equal('h');
         expect(numbericode.indexToLetter(26)).to.equal('z');
-    })
+    });
 
     it('can give the number an index from 0 to 26', () => {
         expect(numbericode.alphabetIndex(0)).to.equal(0);
@@ -51,22 +51,8 @@ describe('numericode substitution cypher', () => {
         expect(numbericode.numberDividedBy27UntilBelow27(28)).to.equal(1.037037037037037);
         expect(numbericode.numberDividedBy27UntilBelow27(162)).to.equal(6);
     })
-    it('can check that the number is an §', () => {
+    it('can check that the number is an integer', () => {
         expect(numbericode.isAnInteger(3.5)).to.be.false;
         expect(numbericode.isAnInteger(1)).to.be.true;
-    })
+    });
 });
-
-
-
-
-// const numericSubstitionCipherHello =  testCases[0];
-
-// assert.equal(numbericode.decipher(numericSubstitionCipherHello), 'Hello');
-
-// assert.equal(numbericode.numericSubstitutionDecipher(432), 'Hello');
-
-// if(number < 27){
-//     return number;
-// }
-// return decipher(number / 27);

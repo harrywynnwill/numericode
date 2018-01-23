@@ -25,7 +25,8 @@ describe('Code Input', () => {
     });
 
     it('should call onChange with text input', () => {
-        testComponent.find('input').first().simulate('change', {target: {value: '11 22 33'}});
+        testComponent.find('input').first().simulate('change', 
+            {target: {value: '11 22 33'}});
         expect(props.onChange.calledOnce).to.equal(true);
     });
 });
