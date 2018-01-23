@@ -20,7 +20,7 @@ You can now curl the backend …
 
 `curl http://localhost:3000/decode/8%205%20324%208748%20295245%20730%2023%20405%2013122%2012%20108`
 
-&& view the fronte end 
+&& view the front end 
 
 `http://localhost:3000`
 
