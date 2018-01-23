@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Axios from 'axios';
-
 import MessageDisplay from './component/message-display';
 import CodeInput from './component/code-input';
 
@@ -13,6 +11,8 @@ class App extends Component {
     super(props);
     this.state = { value: '', decoded: '' };
     this.url = 'http://localhost:3000/decode/';
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount() {
@@ -25,16 +25,15 @@ class App extends Component {
   saveDecodedMessageLocalStorage(message) {
     this.setState({ decoded: message.decoded });
     localStorage.setItem('message', this.state.decoded);
-    // return message.decoded;
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    this.getDecodedMessage();
+    this.saveDecodedMessageLocalStorage(await this.getDecodedMessage());
   }
 
   async getDecodedMessage() {
@@ -48,7 +47,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to Numericode</h1>
         </header>
-        <CodeInput value={this.state.value} onSubmit={this.handleSubmit.bind(this)} onChange={this.handleChange.bind(this)} />
+        <CodeInput value={this.state.value} onSubmit={this.handleSubmit} onChange={this.handleChange} />
         <MessageDisplay message={this.state.decoded}/>
       </div>
     );

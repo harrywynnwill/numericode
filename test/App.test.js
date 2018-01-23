@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import BrowserMocks from '../browser-mocks'; // Browsermocks are used to mock the localstorage in testing
+import BrowserMocks from './browser-mocks'; // Browsermocks are used to mock the localstorage in testing
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import moxios from 'moxios';
@@ -27,10 +27,10 @@ describe('the numericode app', () => {
     moxios.uninstall()
   });
 
-  const testComponent = mount(<App />);
+  const testComponent = mount(<App/>);
   const instance = testComponent.instance();
   const stubResponse = { decoded: "hello world" };
-  const stubEvent = { preventDefault: () => {}};
+  const stubEvent = { preventDefault: () => {}}; 
 
   it('can get a response from the server', async () => {
     instance.setState({ value: "1111" });
