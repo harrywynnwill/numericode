@@ -21,5 +21,4 @@ yarn-debug.log*
 yarn-e
 
 #IDE
-
-/.vscode
+.vscode/
