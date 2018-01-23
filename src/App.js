@@ -12,33 +12,35 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { value: '', decoded: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.url = 'http://localhost:3000/decode/'
+    this.url = 'http://localhost:3000/decode/';
   }
 
   componentWillMount() {
-    const cachedDecodedState = localStorage.getItem('state');
-    if (cachedDecodedState) {
-      this.setState({ decoded: cachedDecodedState });
-        return;
+    const cachedDecodedMessage = localStorage.getItem('message');
+    if (cachedDecodedMessage) {
+      this.setState({ decoded: cachedDecodedMessage });
     }
   }
 
-  onResponse(response) {
-    this.setState({ decoded: response.data.decoded })
-    localStorage.setItem('state', this.state.decoded )
+  saveDecodedMessageLocalStorage(message) {
+    this.setState({ decoded: message.decoded });
+    localStorage.setItem('message', this.state.decoded);
+    // return message.decoded;
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    await Axios.get(`${this.url}${this.state.value}`)
-      .then(response => this.onResponse(response))
-  };
+    this.getDecodedMessage();
+  }
+
+  async getDecodedMessage() {
+    return await Axios.get(`${this.url}${this.state.value}`)
+       .then(response => response.data );
+  }
 
   render() {
     return (
@@ -46,13 +48,8 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to Numericode</h1>
         </header>
-        <form onSubmit={this.handleSubmit}>
-          <label>Please enter the code:
-           <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-        <MessageDisplay message={this.state.decoded}></MessageDisplay>
+        <CodeInput value={this.state.value} onSubmit={this.handleSubmit.bind(this)} onChange={this.handleChange.bind(this)} />
+        <MessageDisplay message={this.state.decoded}/>
       </div>
     );
   }

@@ -5,10 +5,9 @@ class CodeInput extends Component {
     render() {
         return (
             <div className="code-input">
-                <form onSubmit={this.props.handleSubmit}>
-                    <label>Please enter the code:
-                        <input type="text" value={this.props.value} onChange={this.props.handleChange} />
-                    </label>
+                <form onSubmit={this.props.onSubmit}>
+                    <h1> Please enter the encoded message:</h1>
+                        <input type="text" value={this.props.value} onChange={this.props.onChange} />
                     <input type="submit" value="Submit" />
                 </form>
             </div>

@@ -1,5 +1,5 @@
-const ZERO = 0;
-const ALPHABET = [...new Set(' abcdefghijklmnopqrstuvwxyz'.split(''))]; //TODO maybe make this a const //todo sets maintain order
+const zero = 0;
+const alphabet = [...new Set(' abcdefghijklmnopqrstuvwxyz'.split(''))]; //TODO maybe make this a const //todo sets maintain order
 
 const decode = (numbers) => {
     return numbers.map(decipher).join('');
@@ -10,12 +10,12 @@ const decipher = (number) => {
 }
 
 const indexToLetter = (index) => {
-    return ALPHABET[index];
+    return alphabet[index];
 }
 
 const alphabetIndex = (number) => {
    const numberBelow27 = numberDividedBy27UntilBelow27(number);
-   return isAnInteger(numberBelow27) ? numberBelow27 : ZERO;
+   return isAnInteger(numberBelow27) ? numberBelow27 : zero;
 }
 
 const numberDividedBy27UntilBelow27 = (number) => {
@@ -26,7 +26,7 @@ const numberDividedBy27UntilBelow27 = (number) => {
     return numberDividedBy27UntilBelow27( number / TWENTY_SEVEN );
 }
 
-const isAnInteger = (number) => number % 1 === ZERO;
+const isAnInteger = (number) => number % 1 === zero;
 
 module.exports = {
     decode: decode,
