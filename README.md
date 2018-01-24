@@ -60,7 +60,7 @@ Add HTTPS!
 
 Extract the deserialisation logic from the server.
 
-Extract http stuff from App.js into a servide.
+Extract http stuff from App.js into a service.
 
 Add tail recursion to the recursive function.
 
