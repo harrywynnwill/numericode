@@ -1,8 +1,6 @@
 const numbericode = require('../numericode-util.js');
 const expect = require('chai').expect;
 
-//TODO edge cases 0 && negatives and very large numbers
-
 describe('numericode substitution cypher', () => {
 
     const [testCaseOne, testCaseTwo, testCaseThree, testCaseFour, testCaseFive] = [
