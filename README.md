@@ -42,11 +42,11 @@ The user's state should be saved. (When I refresh the page, I should see the sam
 
 The single-page app is served by an Express Server. I bootstrapped it with Create React App for speed (and easy config).
 
-`Numericode-util` contains the logic for the numericode algorithm.
- I wrote the logic for the numericode substitution cipher as a lambda with no mutable state. Could maybe run on AWS Lambda to save costs when numericode scales!
+`Numericode-util.js` contains the logic for the numericode algorithm.
+ I wrote the logic for the numericode substitution cipher as a lambda with no mutable state. Could maybe run on AWS Lambda to save costs when numericode scales! I exposed all the functions in the interface which I wouldn't normally do, I wanted to show my thought process in the tests.
 
 `server.js` serves the React App and `decode` lambda endpoint.
-The server is an object that takes the `substitution cypher algorithm` as an argument in the constructor. This made mocking easier and allows the implementation of the algorithm to be easily changed.
+The server is an object that takes the "substitution cypher algorithm" as an argument in the constructor. This made mocking easier and allows the implementation of the algorithm to be easily changed.
 
 The Frontend is written in React which is a little heavy weight for the task. However it is quick to prototype and abstracts lots of config. I decided to persist the decoded message in `local storage` in the browser. It seemed like the quickest option to deliver all the requirements. However this could be moved down the stack…
 
@@ -59,6 +59,8 @@ I TDDed the algo, the server is unit tested and I used Enzyme to test the React 
 Add HTTPS! 
 
 Extract the deserialisation logic from the server.
+
+Extract http stuff from App.js into a servide.
 
 Add tail recursion to the recursive function.
 
